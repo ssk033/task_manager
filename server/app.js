@@ -43,6 +43,8 @@ app.use('/api/tasks', requireAuth, tasksRouter);
 const publicDir = path.join(__dirname, '..', 'public');
 app.get('/', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
 app.get('/login', (req, res) => res.sendFile(path.join(publicDir, 'login.html')));
+app.get('/api', (req, res) => res.sendFile(path.join(publicDir, 'index.html')));
+app.get('/api/login', (req, res) => res.sendFile(path.join(publicDir, 'login.html')));
 app.use(express.static(publicDir));
 
 module.exports = app;
