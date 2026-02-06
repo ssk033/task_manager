@@ -128,22 +128,29 @@ npm test
 
 Uses Node.js built-in test runner. Tests hit the **tasks API** (with a test user/session). Set `DATABASE_URL` and run `npm run init-db` first. See `test/api.test.js` for coverage.
 
-## Deployment (Render.com / Railway)
+## Deployment
 
-**Important:** Deploy as a **Node.js Web Service** (not a static site). 404 means the server is not running.
+**Important:** Deploy as a **Node.js / Express** app (not a static-only site). 404 usually means the backend is not running.
 
-1. Push repo to GitHub.
-2. [Render](https://render.com): New → **Web Service** → connect your repo.
-3. **Build command:** `npm install`  
-   **Start command:** `npm start`
-4. **Environment variables** (required):
+### Vercel
+
+1. Push repo to GitHub and [import on Vercel](https://vercel.com/new).
+2. **Root `index.js`** exports the Express app — Vercel will use it. No extra config needed.
+3. **Environment variables** (Project → Settings → Environment Variables):
    - `NODE_ENV` = `production`
    - `DATABASE_URL` = your Neon connection string
-   - `SESSION_SECRET` = long random string (e.g. Render “Generate”)
-5. After first deploy, run **once** to create tables: from your laptop `npm run init-db` (with same `DATABASE_URL` in `.env`), or in Render Shell: `npm run init-db`.
-6. Open the service URL → you should see the **login page**. Register and use the app.
+   - `SESSION_SECRET` = long random string
+4. After first deploy, run **once** locally: `npm run init-db` (with same `DATABASE_URL`) to create DB tables.
+5. Open your Vercel URL (e.g. `https://task-manager-rit.vercel.app`) → **login page** should load. Use **Register** then log in.
 
-**Health check:** `GET /api/health` returns `{ "ok": true }` if the server is up.
+### Render / Railway
+
+1. New **Web Service** → connect repo.
+2. **Build:** `npm install` · **Start:** `npm start`
+3. Set `NODE_ENV`, `DATABASE_URL`, `SESSION_SECRET`. Run `npm run init-db` once after deploy.
+4. Open the service URL → login page.
+
+**Health check:** `GET /api/health` returns `{ "ok": true }` when the server is up.
 
 ## Evaluation checklist
 
