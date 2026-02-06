@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign in — Task Manager</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app auth-page">
+    <header class="header">
+      <h1>Task Manager</h1>
+      <p class="tagline">Sign in to manage your tasks</p>
+    </header>
+
+    <main class="main">
+      <div class="auth-tabs">
+        <button type="button" class="auth-tab active" data-tab="login">Log in</button>
+        <button type="button" class="auth-tab" data-tab="register">Register</button>
+      </div>
+
+      <section id="login-section" class="add-task auth-form">
+        <h2>Log in</h2>
+        <form id="login-form" class="task-form">
+          <div class="form-group">
+            <label for="login-username">Username</label>
+            <input type="text" id="login-username" name="username" required autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <input type="password" id="login-password" name="password" required autocomplete="current-password">
+          </div>
+          <p id="login-error" class="form-error hidden"></p>
+          <button type="submit" class="btn btn-primary">Log in</button>
+        </form>
+      </section>
+
+      <section id="register-section" class="add-task auth-form hidden">
+        <h2>Register</h2>
+        <form id="register-form" class="task-form">
+          <div class="form-group">
+            <label for="register-username">Username</label>
+            <input type="text" id="register-username" name="username" required minlength="2" autocomplete="username">
+          </div>
+          <div class="form-group">
+            <label for="register-password">Password</label>
+            <input type="password" id="register-password" name="password" required minlength="6" autocomplete="new-password">
+          </div>
+          <p id="register-error" class="form-error hidden"></p>
+          <button type="submit" class="btn btn-primary">Create account</button>
+        </form>
+      </section>
+    </main>
+  </div>
+  <script src="/js/login.js"></script>
+</body>
+</html>

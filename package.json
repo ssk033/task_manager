@@ -1,0 +1,26 @@
+{
+  "name": "todo-list",
+  "version": "1.0.0",
+  "description": "Task Management Web Application with Express and Neon PostgreSQL",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "init-db": "node server/initDb.js",
+    "test": "node --test test/api.test.js"
+  },
+  "keywords": ["todo", "tasks", "express", "neon", "postgresql"],
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-pg-simple": "^9.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "pg": "^8.11.3"
+  },
+  "devDependencies": {
+    "supertest": "^6.3.3"
+  }
+}
