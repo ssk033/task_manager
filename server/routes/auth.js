@@ -72,11 +72,13 @@ router.post('/login', async (req, res) => {
       return res.status(500).json({ error: 'Database table missing. Run: npm run init-db' });
     }
     if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
-      return res.status(500).json({ error: 'Database not reachable. Check DATABASE_URL in .env' });
+      return res.status(500).json({ error: 'Database not reachable. Set DATABASE_URL on Vercel.' });
     }
     console.error('Login error:', err);
-    const msg = process.env.NODE_ENV === 'production' ? 'Login failed' : (err.message || 'Login failed');
-    res.status(500).json({ error: msg });
+    const hint = process.env.NODE_ENV === 'production'
+      ? ' Set DATABASE_URL + SESSION_SECRET on Vercel and run npm run init-db once.'
+      : '';
+    res.status(500).json({ error: 'Login failed.' + hint });
   }
 });
 

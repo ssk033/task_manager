@@ -11,6 +11,7 @@
   },
   "keywords": ["todo", "tasks", "express", "neon", "postgresql"],
   "license": "MIT",
+  "engines": { "node": "20.x" },
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^9.0.0",
