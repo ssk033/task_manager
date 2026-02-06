@@ -33,8 +33,15 @@ router.post('/register', async (req, res) => {
     if (err.code === '23505') {
       return res.status(409).json({ error: 'Username already taken' });
     }
-    console.error(err);
-    res.status(500).json({ error: 'Registration failed' });
+    if (err.code === '42P01') {
+      return res.status(500).json({ error: 'Database table missing. Run: npm run init-db' });
+    }
+    if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+      return res.status(500).json({ error: 'Database not reachable. Check DATABASE_URL in .env' });
+    }
+    console.error('Register error:', err);
+    const msg = process.env.NODE_ENV === 'production' ? 'Registration failed' : (err.message || 'Registration failed');
+    res.status(500).json({ error: msg });
   }
 });
 
@@ -61,8 +68,15 @@ router.post('/login', async (req, res) => {
     req.session.username = user.username;
     res.json({ id: user.id, username: user.username });
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Login failed' });
+    if (err.code === '42P01') {
+      return res.status(500).json({ error: 'Database table missing. Run: npm run init-db' });
+    }
+    if (err.code === 'ECONNREFUSED' || err.code === 'ENOTFOUND') {
+      return res.status(500).json({ error: 'Database not reachable. Check DATABASE_URL in .env' });
+    }
+    console.error('Login error:', err);
+    const msg = process.env.NODE_ENV === 'production' ? 'Login failed' : (err.message || 'Login failed');
+    res.status(500).json({ error: msg });
   }
 });
 
