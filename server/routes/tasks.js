@@ -11,7 +11,6 @@ function getUserId(req) {
   return id;
 }
 
-// GET /api/tasks - List all tasks for current user
 router.get('/', async (req, res) => {
   try {
     const userId = getUserId(req);
@@ -37,7 +36,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/tasks/:id - Get single task
 router.get('/:id', async (req, res) => {
   try {
     const userId = getUserId(req);
@@ -59,7 +57,6 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST /api/tasks - Create task
 router.post('/', async (req, res) => {
   try {
     const userId = getUserId(req);
@@ -84,7 +81,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT /api/tasks/:id - Update task
 router.put('/:id', async (req, res) => {
   try {
     const userId = getUserId(req);
@@ -135,7 +131,6 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE /api/tasks/:id - Delete task
 router.delete('/:id', async (req, res) => {
   try {
     const userId = getUserId(req);
